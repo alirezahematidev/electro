@@ -1,0 +1,14 @@
+{
+  "name": "@electro/crates",
+  "collaborators": [
+    "alirezahematidev <alirezahematideveloper71@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "main_bg.wasm",
+    "main.js",
+    "main.d.ts"
+  ],
+  "main": "main.js",
+  "types": "main.d.ts"
+}
