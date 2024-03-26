@@ -6,18 +6,18 @@
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "scripts": {
-    "start": "node dist/main.js",
+    "start": "pnpm build && pnpm electro",
     "read-config": "pnpm build && node dist/conf.js",
     "dev:tsc": "tsc --watch --preserveWatchOutput",
     "dev:node": "wait-on dist/main.js && node --no-warnings --enable-source-maps --watch dist/main.js",
     "dev": "pnpm run \"/dev:/\"",
-    "build": "tsc --build",
-    "cli": "pnpm build && pnpm electro"
+    "build": "tsc --build"
   },
   "keywords": [],
   "files": [
     "bin",
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "author": "",
   "license": "ISC",

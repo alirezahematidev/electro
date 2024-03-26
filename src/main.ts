@@ -1,3 +1,6 @@
+import fse from "fs-extra";
+import { resolve } from "path";
+
 interface Char {
   type: "char";
   minLength?: number;
@@ -28,30 +31,74 @@ interface Bool {
   frequency?: number;
 }
 
-interface Model {
-  name: string;
+interface Model<N extends string> {
+  name: N;
   count?: number;
   schema: Record<string, Char | Integer | Email | Name | Bool>;
 }
 
-interface RequestOptions {
-  methods?: ["get", "post", "put", "patch", "delete"];
+type RequestMethod = "get" | "post" | "put" | "delete";
+
+type RequestDelayPathOptions<Name extends string> = {
+  [name in Name]?: number;
+};
+
+type RequestDelayOptions<Name extends string> = {
+  [method in RequestMethod]?: number | RequestDelayPathOptions<Name>;
+};
+
+type RequestThrowPathConfig = {
+  throwsOn?: RequestMethod | Array<RequestMethod>;
+  statusCode?: number;
+  message: string;
+};
+
+type RequestThrowOption<Name extends string> = {
+  [name in Name]?: RequestThrowPathConfig;
+};
+
+type RequestCustomHeaderOptions<Name extends string> = {
+  [name in Name]?: Record<string, any>;
+};
+
+interface RequestOptions<Name extends string> {
+  customHeaders?: RequestCustomHeaderOptions<Name>;
+  throwOptions?: RequestThrowOption<Name>;
+  delayInMillis?: number | RequestDelayOptions<Name>;
 }
 
 interface GlobalOptions {
+  typescript?: boolean;
   arrayUniqueId?: boolean;
   uniqueIdGenerator?(): string;
 }
 
-interface ConfigOptions {
-  output: string;
-  model: Model;
-  requestOptions?: RequestOptions;
+interface ConfigOptions<Name extends string> {
+  /**
+   * @default 'node_modules/.electro'
+   */
+  output?: string;
+  models: Model<Name>[];
+  plugins?: string[];
+  requestOptions?: RequestOptions<Name>;
   globalOptions?: GlobalOptions;
 }
 
-function defineConfig(options: ConfigOptions) {
-  console.log(options);
+async function defineConfig<Name extends string>(options: ConfigOptions<Name>) {
+  try {
+    /**
+     *  @todo should read all `node_modules` dirs in the project and find the node_modules dir that the `electro` package is installed into it. then create the temp dir into the same node_modules dir.
+     */
+    const temp = resolve(process.cwd(), "node_modules", ".electro");
+
+    await fse.emptyDir(temp);
+
+    await Promise.all(options.models.map((m) => fse.mkdtemp(resolve(temp, `${m.name}_`))));
+  } catch (error) {
+    //
+  }
+
+  console.log(options.models);
 }
 
 export { defineConfig };
