@@ -1,0 +1,29 @@
+{
+  "name": "@electro/core",
+  "version": "0.0.1",
+  "description": "route file system core",
+  "type": "module",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "scripts": {
+    "start": "pnpm build && pnpm electro",
+    "dev:tsc": "tsc --watch --preserveWatchOutput",
+    "dev:node": "wait-on dist/main.js && node --no-warnings --enable-source-maps --watch dist/main.js",
+    "dev": "pnpm run \"/dev:/\"",
+    "build": "tsc --build"
+  },
+  "bin": {
+    "electro": "bin/electro.js"
+  },
+  "keywords": [
+    "mock",
+    "faker"
+  ],
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "license": "MIT",
+  "author": "Alireza Hemati",
+  "devDependencies": {}
+}

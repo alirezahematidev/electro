@@ -1,30 +1,25 @@
 {
-  "name": "electro",
+  "name": "@electro/libs",
   "version": "1.0.0",
   "description": "route file system",
+  "private": true,
   "type": "module",
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
-  "scripts": {
-    "start": "pnpm build && pnpm electro",
-    "read-config": "pnpm build && node dist/conf.js",
-    "dev:tsc": "tsc --watch --preserveWatchOutput",
-    "dev:node": "wait-on dist/main.js && node --no-warnings --enable-source-maps --watch dist/main.js",
-    "dev": "pnpm run \"/dev:/\"",
-    "build": "tsc --build"
-  },
-  "keywords": [],
-  "files": [
-    "bin",
-    "dist",
-    "index.d.ts"
+  "workspaces": [
+    "packages/*"
   ],
-  "author": "",
-  "license": "ISC",
-  "bin": {
-    "electro": "./bin/index.js"
+  "engines": {
+    "node": ">=18.0.0"
   },
+  "scripts": {
+    "revalidate": "pnpm install --no-frozen-lockfile",
+    "preinstall": "npx only-allow pnpm",
+    "start:node": "pnpm wasm && pnpm -r --filter='./packages/core' run start",
+    "wasm": "tsx scripts/pack.ts"
+  },
+  "license": "ISC",
   "devDependencies": {
+    "@electro/core": "workspace:*",
+    "@electro/crates": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.29",
     "concurrently": "^8.2.2",
@@ -34,6 +29,13 @@
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
-    "wait-on": "^7.2.0"
+    "wait-on": "^7.2.0",
+    "tsx": "4.7.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@electro/core": "workspace:*",
+      "@electro/crates": "workspace:*"
+    }
   }
 }
