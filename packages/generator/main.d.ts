@@ -3,4 +3,4 @@
 /**
 * @returns {string}
 */
-export function name1(): string;
+export function name3(): string;

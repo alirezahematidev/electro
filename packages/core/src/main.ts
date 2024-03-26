@@ -1,6 +1,6 @@
 import fse from "fs-extra";
 import { resolve } from "path";
-import { name1 } from "@electro/crates";
+import { name3 } from "@electro/crates";
 
 interface Char {
   type: "char";
@@ -98,7 +98,7 @@ async function defineConfig<Name extends string>(options: ConfigOptions<Name>) {
   } catch (error) {
     //
   }
-  const name2 = name1();
+  const name2 = name3();
   console.log({ name2 });
   console.log(options.models);
 }
