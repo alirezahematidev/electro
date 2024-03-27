@@ -1,6 +1,6 @@
 {
-  "name": "@electro/libs",
-  "version": "1.0.0",
+  "name": "electro-libs",
+  "version": "0.0.1",
   "description": "route file system",
   "private": true,
   "type": "module",
@@ -14,11 +14,13 @@
     "revalidate": "pnpm install --no-frozen-lockfile",
     "preinstall": "npx only-allow pnpm",
     "start:node": "pnpm wasm && pnpm -r --filter='./packages/core' run start",
+    "build:node": "pnpm -r --filter='./packages/core' run build",
+    "build:api": "pnpm -r --filter='./packages/api' run build",
     "wasm": "tsx scripts/pack.ts"
   },
-  "license": "ISC",
   "devDependencies": {
     "@electro/core": "workspace:*",
+    "@electro/api": "workspace:*",
     "@electro/crates": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.29",
@@ -35,6 +37,7 @@
   "pnpm": {
     "overrides": {
       "@electro/core": "workspace:*",
+      "@electro/api": "workspace:*",
       "@electro/crates": "workspace:*"
     }
   }

@@ -1,6 +1,6 @@
 import fse from "fs-extra";
 import { resolve } from "path";
-import { name3 } from "@electro/crates";
+import { type RequestOptions, runServer } from "@electro/api";
 
 interface Char {
   type: "char";
@@ -38,36 +38,6 @@ interface Model<N extends string> {
   schema: Record<string, Char | Integer | Email | Name | Bool>;
 }
 
-type RequestMethod = "get" | "post" | "put" | "delete";
-
-type RequestDelayPathOptions<Name extends string> = {
-  [name in Name]?: number;
-};
-
-type RequestDelayOptions<Name extends string> = {
-  [method in RequestMethod]?: number | RequestDelayPathOptions<Name>;
-};
-
-type RequestThrowPathConfig = {
-  throwsOn?: RequestMethod | Array<RequestMethod>;
-  statusCode?: number;
-  message: string;
-};
-
-type RequestThrowOption<Name extends string> = {
-  [name in Name]?: RequestThrowPathConfig;
-};
-
-type RequestCustomHeaderOptions<Name extends string> = {
-  [name in Name]?: Record<string, any>;
-};
-
-interface RequestOptions<Name extends string> {
-  customHeaders?: RequestCustomHeaderOptions<Name>;
-  throwOptions?: RequestThrowOption<Name>;
-  delayInMillis?: number | RequestDelayOptions<Name>;
-}
-
 interface GlobalOptions {
   typescript?: boolean;
   arrayUniqueId?: boolean;
@@ -98,8 +68,15 @@ async function defineConfig<Name extends string>(options: ConfigOptions<Name>) {
   } catch (error) {
     //
   }
-  const name2 = name3();
-  console.log({ name2 });
+
+  options.requestOptions = options.requestOptions ?? {};
+
+  try {
+    if (options.requestOptions.enabled) await runServer(options.requestOptions);
+  } catch (error) {
+    //
+  }
+
   console.log(options.models);
 }
 
