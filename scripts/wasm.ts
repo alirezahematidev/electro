@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { execa } from "execa";
 import path from "path";
 
 const cwd = path.resolve(process.cwd(), "crates");
@@ -18,4 +18,4 @@ args.push(...["--out-dir", out]);
 // set scope
 args.push(...["--scope", "electro"]);
 
-spawn("wasm-pack", args.filter(Boolean), { cwd });
+execa("wasm-pack", args, { stdio: "inherit", encoding: "utf8", cwd });

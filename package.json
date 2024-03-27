@@ -16,7 +16,8 @@
     "start:node": "pnpm wasm && pnpm -r --filter='./packages/core' run start",
     "build:node": "pnpm -r --filter='./packages/core' run build",
     "build:api": "pnpm -r --filter='./packages/api' run build",
-    "wasm": "tsx scripts/pack.ts"
+    "wasm": "tsx scripts/wasm.ts",
+    "template": "tsx scripts/template.ts"
   },
   "devDependencies": {
     "@electro/core": "workspace:*",
@@ -24,6 +25,7 @@
     "@electro/crates": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.29",
+    "execa": "8.0.1",
     "concurrently": "^8.2.2",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",

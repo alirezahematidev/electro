@@ -1,6 +1,7 @@
 import fse from "fs-extra";
 import { resolve } from "path";
 import { type RequestOptions, runServer } from "@electro/api";
+import { firstName } from "@electro/crates";
 
 interface Char {
   type: "char";
@@ -77,7 +78,12 @@ async function defineConfig<Name extends string>(options: ConfigOptions<Name>) {
     //
   }
 
-  console.log(options.models);
+  try {
+    const result = firstName();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export { defineConfig };
