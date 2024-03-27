@@ -7,7 +7,7 @@ pub struct FA;
 impl ElectroData for FA {
     const FIRST_NAME: &'static [&'static str] = FakeFirstName::FA;
     const LAST_NAME: &'static [&'static str] = FakeLastName::FA;
-    const WORD: &'static [&'static str] = FakeWord::FA;
+    const NOUNS: &'static [&'static str] = FakeWord::FA_NOUNS;
 }
 
 use self::{

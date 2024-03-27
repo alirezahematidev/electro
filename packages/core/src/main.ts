@@ -1,13 +1,11 @@
 import fse from "fs-extra";
 import { resolve } from "path";
 import { type RequestOptions, runServer } from "@electro/api";
-import { firstName } from "@electro/crates";
 
-interface Char {
-  type: "char";
+interface Word {
+  type: "word";
   minLength?: number;
   maxLength?: number;
-  case?: "lower" | "upper" | "capital";
   transform?: (value: string) => string;
 }
 
@@ -36,7 +34,7 @@ interface Bool {
 interface Model<N extends string> {
   name: N;
   count?: number;
-  schema: Record<string, Char | Integer | Email | Name | Bool>;
+  schema: Record<string, Word | Integer | Email | Name | Bool>;
 }
 
 interface GlobalOptions {
@@ -76,13 +74,6 @@ async function defineConfig<Name extends string>(options: ConfigOptions<Name>) {
     if (options.requestOptions.enabled) await runServer(options.requestOptions);
   } catch (error) {
     //
-  }
-
-  try {
-    const result = firstName();
-    console.log(result);
-  } catch (error) {
-    console.error(error);
   }
 }
 

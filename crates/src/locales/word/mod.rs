@@ -1,6 +1,9 @@
+mod en;
+mod fa;
+
 pub trait Word {
-    const EN: &'static [&'static str] = &["verify"];
-    const FA: &'static [&'static str] = &["تایید"];
+    const EN_NOUNS: &'static [&'static str] = en::nouns::EN_NOUNS;
+    const FA_NOUNS: &'static [&'static str] = fa::nouns::FA_NOUNS;
 }
 
 pub struct FakeWord;

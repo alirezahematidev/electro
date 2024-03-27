@@ -13,7 +13,7 @@
   "scripts": {
     "revalidate": "pnpm install --no-frozen-lockfile",
     "preinstall": "npx only-allow pnpm",
-    "start:node": "pnpm wasm && pnpm -r --filter='./packages/core' run start",
+    "start:node": "pnpm -r --filter='./packages/core' run start",
     "build:node": "pnpm -r --filter='./packages/core' run build",
     "build:api": "pnpm -r --filter='./packages/api' run build",
     "wasm": "tsx scripts/wasm.ts",

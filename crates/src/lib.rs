@@ -41,3 +41,25 @@ pub fn lastname(locale: Option<String>) -> String {
         _ => EN::LAST_NAME[index].to_string(),
     }
 }
+
+fn random_word(word_list: &[&str], min: Option<usize>, max: Option<usize>) -> String {
+    let min_len = min.unwrap_or(1);
+    let max_len = max.unwrap_or(usize::MAX);
+
+    let words: Vec<&str> = word_list
+        .iter()
+        .filter(|&word| word.len() >= min_len && word.len() <= max_len)
+        .copied()
+        .collect();
+
+    let index = range(words.len());
+    words[index].to_string()
+}
+
+#[wasm_bindgen]
+pub fn word(locale: Option<String>, min: Option<usize>, max: Option<usize>) -> String {
+    match locale.as_deref() {
+        Some("FA") => random_word(&FA::NOUNS, min, max),
+        _ => random_word(&EN::NOUNS, min, max),
+    }
+}

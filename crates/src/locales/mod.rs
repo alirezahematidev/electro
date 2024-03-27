@@ -6,7 +6,7 @@ mod word;
 pub trait ElectroData {
     const FIRST_NAME: &'static [&'static str] = FakeFirstName::EN;
     const LAST_NAME: &'static [&'static str] = FakeLastName::EN;
-    const WORD: &'static [&'static str] = FakeWord::EN;
+    const NOUNS: &'static [&'static str] = FakeWord::EN_NOUNS;
 }
 
 pub mod en;
