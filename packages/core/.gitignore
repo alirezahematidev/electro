@@ -1,4 +1,4 @@
 node_modules
 dist
-electro*
+electro.config.*
 tsconfig.tsbuildinfo
