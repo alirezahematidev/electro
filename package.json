@@ -16,13 +16,11 @@
     "start:node": "pnpm -r --filter='./packages/core' run start",
     "build:node": "pnpm -r --filter='./packages/core' run build",
     "build:api": "pnpm -r --filter='./packages/api' run build",
-    "wasm": "tsx scripts/wasm.ts",
-    "template": "tsx scripts/template.ts"
+    "faker": "tsx packages/core/src/faker.ts"
   },
   "devDependencies": {
     "@electro/core": "workspace:*",
     "@electro/api": "workspace:*",
-    "@electro/crates": "workspace:*",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.29",
     "execa": "8.0.1",
@@ -39,8 +37,7 @@
   "pnpm": {
     "overrides": {
       "@electro/core": "workspace:*",
-      "@electro/api": "workspace:*",
-      "@electro/crates": "workspace:*"
+      "@electro/api": "workspace:*"
     }
   }
 }

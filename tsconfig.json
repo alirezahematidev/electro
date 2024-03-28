@@ -12,10 +12,15 @@
     "allowSyntheticDefaultImports": true,
     "allowArbitraryExtensions": true,
     "incremental": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "noUncheckedIndexedAccess": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
     "module": "NodeNext",
-    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true,
+    "declarationMap": true,
+    "inlineSourceMap": true,
     "lib": ["es2022"]
   },
   "include": ["packages/*/src"]

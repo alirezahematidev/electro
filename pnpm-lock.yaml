@@ -7,7 +7,6 @@ settings:
 overrides:
   '@electro/core': workspace:*
   '@electro/api': workspace:*
-  '@electro/crates': workspace:*
 
 importers:
 
@@ -19,9 +18,6 @@ importers:
       '@electro/core':
         specifier: workspace:*
         version: link:packages/core
-      '@electro/crates':
-        specifier: workspace:*
-        version: link:packages/generator
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -75,9 +71,11 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
 
-  packages/core: {}
-
-  packages/generator: {}
+  packages/core:
+    devDependencies:
+      '@faker-js/faker':
+        specifier: ^8.4.1
+        version: 8.4.1
 
 packages:
 
@@ -301,6 +299,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@faker-js/faker@8.4.1:
+    resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+    dev: true
 
   /@hapi/hoek@9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}

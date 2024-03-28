@@ -25,5 +25,7 @@
   ],
   "license": "MIT",
   "author": "Alireza Hemati",
-  "devDependencies": {}
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
+  }
 }
